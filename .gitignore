@@ -1,2 +1,4 @@
 /node_modules
 /fetch-json/node_modules
+/fetch-json/.parcel-cache
+/fetch-json/dist
