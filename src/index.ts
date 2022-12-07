@@ -1,51 +1,17 @@
-//Example from ArgPrograma
-class Persona {
-    //attributs
-    private nombre: string;
-    private apellido: string;
-    private añoNac: number;
-    //constructor
-    constructor(nombre: string, apellido: string, añoNac: number) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.añoNac = añoNac;
-    }
-
-    //methods
-    public toString(): string {
-        return this.nombre + this.apellido;
-    }
-    public edad(añoactual: number): number {
-        return (añoactual - this.añoNac);
-    }
-    get Nombre(): string {
-        return this.nombre;
-    }
-    set Nombre(nombre: string) {
-        this.nombre = nombre;
-    }
-    get Apellido(): string {
-        return this.apellido;
-    }
-    set Apellido(apellido: string) {
-        this.apellido = apellido;
-    }
-    public setApellido(apellido: string) {
-        this.apellido = apellido;
-    }
-    set AñoNac(año: number) {
-        this.añoNac = año;
-    }
+interface Employee {
+    name: string,
+    surname: string,
+    prof: string,
+    contractStatus: ContractStatus
 }
-
-function DecoradorPersona(data: string) {
-    return function <T extends { new(...args: any[]): {} }>(constructor: T) {
-        return class extends constructor {
-            array = data.split(",");
-            Nombre = this.array[0];
-            Apellido = this.array[1];
-        }
-    }
+enum ContractStatus {
+    Permanent, Temp, Apprentice
+};
+let employee: Employee = {
+    name: "Manuel",
+    surname: "Bravard",
+    prof: "Tec. Developer",
+    contractStatus: ContractStatus.Temp
 }
-
-// @DecoradorPersona("Juan, Lopez")
+console.log(ContractStatus)
+console.log(employee);
