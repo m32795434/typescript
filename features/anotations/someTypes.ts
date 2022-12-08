@@ -16,6 +16,7 @@ let point: { x: number; y: number } = {
     x: 10,
     y: 20
 }
+//----------------------------------------------------------
 //when we will type a type?
 // 1) When a function returns the "any" type and we need to clarify the value
 const json = "{'x':10, 'y':15}";
@@ -23,3 +24,4 @@ const coordinates: { x: number; y: number } = JSON.parse(json);//.parse() return
 
 // 2)when we declare a variable on one line, and then, we initialize it later
 // 3)When we want a variable to have a type that can't be inferred.
+//----------------------------------------------------------
