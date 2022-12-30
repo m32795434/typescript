@@ -17,7 +17,7 @@ class Persona {
     private apellido: string;
     private añoNac: number;
     private _edad1: number;
-
+    //getter: dynamic property. It runs a method when it's called and update its value. 
     get Promocion() {//the user see a property, but don't see that it's a method. This is a dynamic value
         return ((new Date().getFullYear()) - (this._edad1 - 17));
     }
