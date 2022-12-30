@@ -16,12 +16,15 @@ class Persona {
     private nombre: string;
     private apellido: string;
     private añoNac: number;
-    private _edad1: number = 0;
+    private _edad1: number;
 
-    get Edad() {//this creates the virtual pseudo-property "Edad"
+    get Promocion() {//the user see a property, but don't see that it's a method. This is a dynamic value
+        return ((new Date().getFullYear()) - (this._edad1 - 17));
+    }
+    get Edad(): number {//this creates the virtual pseudo-property "Edad"
         return this._edad1;
     }
-    set Edad(añoactual: number) {
+    set Edad(añoactual: number) {// here the user don't know what he/she have to pass as an arg. This hide the code.
         this._edad1 = (añoactual - this.añoNac);
     }
     get NombreCompleto() {
@@ -30,10 +33,11 @@ class Persona {
 
     //constructor
 
-    constructor(nombre: string, apellido: string, añoNac: number) {
+    constructor(nombre: string, apellido: string, añoNac: number, edad: number) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.añoNac = añoNac;
+        this._edad1 = edad;
     }
 
     //methods
@@ -42,5 +46,5 @@ class Persona {
     }
 
 }
-const Manuel: Persona = new Persona("Bravard", "Manuel", 1987);
+const Manuel: Persona = new Persona("Bravard", "Manuel", 1987, 35);
 console.log(Manuel);
