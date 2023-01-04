@@ -10,23 +10,22 @@ console.log(range1);
 function maximumContainers(scenarios: string[]) {
     if ((scenarios.length >= 1) && (scenarios.length <= (10 ** 3))) {
         scenarios.forEach((scn) => {
-            const scnArray = scn.trim().split(' ');//ex:['10', '2', '2']
+            const scnArray = scn.trim().split(' ');
             let bud: number, cost: number, m: number;
             [bud, cost, m] = [parseInt(scnArray[0]), parseInt(scnArray[1]), parseInt(scnArray[2])]
             if (((bud >= 2) && (bud <= 10 ** 5)) && ((cost >= 1) && (cost <= bud)) && ((m >= 2) && (m <= bud))) {
-                //console.log(bud, cost, m)
                 //we start counting
-                const unitsFirstBuy = Math.floor(bud / cost);// 10/2=5 //
-                let mod = unitsFirstBuy % m;// 1 // 1
-                let sumBonifiedCntrs = 0;//2 //4 ////sumatoria containers bonificados
-                let bonifiedCntrs = Math.floor(unitsFirstBuy / m);//2 //1 //// containers bonificados del ciclo
+                const unitsFirstBuy = Math.floor(bud / cost);
+                let mod = unitsFirstBuy % m;
+                let sumBonifiedCntrs = 0;
+                let bonifiedCntrs = Math.floor(unitsFirstBuy / m);
                 let prevMod: number = 0;
                 do {
                     /*
-                                        if ((mod === 0) && (bonifiedCntrs < m)) {
-                                            sumBonifiedCntrs += bonifiedCntrs;
-                                            break;//end the counting
-                                        }*/
+                     if ((mod === 0) && (bonifiedCntrs < m)) {
+                         sumBonifiedCntrs += bonifiedCntrs;
+                         break;//end the counting
+                     }*/
                     if ((bonifiedCntrs + mod) < m) {//-----BUG-FIX FOR SANTANDER TEC!
                         sumBonifiedCntrs += bonifiedCntrs;
                         break;//end the counting
@@ -35,11 +34,11 @@ function maximumContainers(scenarios: string[]) {
                         sumBonifiedCntrs += bonifiedCntrs + 1;
                         break;//end the counting
                     } else {
-                        //ex: (mod + bonifiedCntrs) > m
-                        sumBonifiedCntrs += bonifiedCntrs;//same?//2 //
+                        // (mod + bonifiedCntrs) > m
+                        sumBonifiedCntrs += bonifiedCntrs;
                         prevMod = mod;//-----BUG-FIX FOR SANTANDER TEC!
-                        mod = ((bonifiedCntrs + mod) % m);//(2+1)%2=1
-                        bonifiedCntrs = Math.floor((bonifiedCntrs + prevMod) / m)//(2+1)/2=1
+                        mod = ((bonifiedCntrs + mod) % m);
+                        bonifiedCntrs = Math.floor((bonifiedCntrs + prevMod) / m)
                         //-----BUG-FIX FOR SANTANDER TEC! - START
                         if ((bonifiedCntrs + mod) < m) {
                             //WILL END, so I need to store the state.
@@ -49,7 +48,7 @@ function maximumContainers(scenarios: string[]) {
                     }
                 } while ((bonifiedCntrs + mod) >= m)
 
-                const total = unitsFirstBuy + sumBonifiedCntrs;//5+4=9
+                const total = unitsFirstBuy + sumBonifiedCntrs;
                 console.log(total);
             }
         })
